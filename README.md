@@ -25,15 +25,12 @@ VRChatを利用していないVRに興味がある方向け
 
 ## 設計書
 - ER図
-<br>
 https://app.diagrams.net/#G1gZTmV_jhjvJCJYyjuFxeKFUsHJ8_OPOK
 
 - テーブル定義書
-<br>
 https://docs.google.com/spreadsheets/d/1ZqZDknVTmLQ50674xw5mxCy-1YuXpoTuVxLlAx2fYpE/edit#gid=84123752
 
 - アプリケーション詳細設計書
-<br>
 https://docs.google.com/spreadsheets/d/1binJ0epy239SO1TfQM9XspJWUCr7kGIn/edit#gid=549108681
 
 
