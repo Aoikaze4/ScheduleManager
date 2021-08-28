@@ -1,0 +1,2 @@
+class EventImage < ApplicationRecord
+end
