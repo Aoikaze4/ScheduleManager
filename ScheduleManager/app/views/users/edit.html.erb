@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 mt-5">
+      <h1>ユーザー情報編集</h1>
+    </div>
+  </div>
+
+  <%= form_with model: @user, local: true do |f| %>
+  <div class="row">
+    <div class="col-md-3">
+      <p>ユーザー名</p>
+    </div>
+    <div class="col-md-3">
+      <%= f.text_field :name, class: "form-control", value: @user.name %>
+    </div>
+  </div>
+  <% end %>
+</div>
