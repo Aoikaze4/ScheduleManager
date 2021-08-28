@@ -20,16 +20,24 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
+
               <!-- ログイン済みの場合 -->
               <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "イベントを開催する", new_event_path, class: "fas fa-calendar-plus nav-link text-dark" %>
+              </li>
               <li class="nav-item">
                 <%= link_to "マイページ", mypage_path, class: "fas fa-user nav-link text-dark" %>
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウトする", destroy_user_session_path, method: :delete, class: "fas fa-sign-out-alt nav-link text-dark" %>
               </li>
+
               <!-- ログインしていない場合 -->
               <% elsif %>
+              <li class="nav-item">
+                <%= link_to "イベントを開催する", new_event_path, class: "fas fa-calendar-plus nav-link text-dark" %>
+              </li>
               <li class="nav-item">
                 <%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt nav-link text-dark" %>
               </li>
