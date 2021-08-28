@@ -8,6 +8,9 @@
 イベントごとに出席が可能な日を各々で入力してもらい、<br>
 管理、確認することが可能なサイトです。<br>
 この日のイベントは誰が来るのかな？と言うような状況を解決する際に使います。
+<br>
+また、イベント終了後にイベントで撮った写真や画像をアップロードすることで、<br>
+思い出のアルバムとしても利用することが可能です。
 
 ### サイトテーマ
 イベントや複数人で遊ぶ際に各々が参加できる時間をまとめ、<br>
@@ -31,10 +34,13 @@
 日時を思い出せるようにできる。
 
 ## 設計書
+ - ER図
+ <https://app.diagrams.net/#G1eITWjgluZuSKr97-Egw2sDtAFagp_NZX>
+ -
 
 
 ## チャレンジ要素一覧
-<https://docs.google.com/spreadsheets/d/1E4Quehglf9PxM1XTE-ft2X5-hJ5dmoJhsI-UJlgzVmY/edit#gid=0>
+<https://docs.google.com/spreadsheets/d/1hvHN-EWag1rxC7JcqMA7Pd0oTp-yp_B8tUSjC0Il294/edit#gid=0>
 
 ## 開発環境
 - OS：Linux(CentOS)
