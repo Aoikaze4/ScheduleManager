@@ -12,12 +12,12 @@
         <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-success col-md-3 ml-4" %>
       </h2>
     </div>
-
-
-
-    <table class="table table-bordered col-md-8">
-      <tr>
-        <%= attachment_image_tag @user, :image, size:"100x100", fallback: "no_image.jpg" %>
-      </tr>
-    </table>
   </div>
+
+
+  <%= attachment_image_tag @user, :image, size:"100x100", fallback: "no_image.jpg", class: "rounded-circle" %>
+
+  <p><%= @user.name %></p>
+
+
+</div>
