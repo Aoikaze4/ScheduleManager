@@ -7,19 +7,28 @@
 
   <%= form_with model: @user, local: true do |f| %>
   <div class="row form-group">
-    <div class="col-md-3 offset-md-3">
+    <div class="col-md-3 offset-md-2">
+      <p>ユーザー画像</p>
+    </div>
+    <div class="col-md-4">
+      <%= f.attachment_field :image, class: "form-control-file" %>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-md-3 offset-md-2">
       <p>ユーザー名</p>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <%= f.text_field :name, class: "form-control", value: @user.name, autofocus: true %>
     </div>
   </div>
 
   <div class="row form-group">
-    <div class="col-md-3  offset-md-3">
+    <div class="col-md-3  offset-md-2">
       <p>メールアドレス</p>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
       <%= f.email_field :email, class: "form-control", value: @user.email %>
     </div>
   </div>

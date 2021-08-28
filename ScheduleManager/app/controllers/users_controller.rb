@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def update
     user = User.find(current_user.id)
     if user.update(user_params)
-      redirect_to my_page_path, notice: "編集が完了しました。"
+      redirect_to mypage_path, notice: "編集が完了しました。"
     else
       render :edit
     end
