@@ -1,17 +1,32 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 mt-5">
+    <div class="col-md-5 my-5">
       <h1>ユーザー情報編集</h1>
     </div>
   </div>
 
   <%= form_with model: @user, local: true do |f| %>
-  <div class="row">
-    <div class="col-md-3">
+  <div class="row form-group">
+    <div class="col-md-3 offset-md-3">
       <p>ユーザー名</p>
     </div>
     <div class="col-md-3">
-      <%= f.text_field :name, class: "form-control", value: @user.name %>
+      <%= f.text_field :name, class: "form-control", value: @user.name, autofocus: true %>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-md-3  offset-md-3">
+      <p>メールアドレス</p>
+    </div>
+    <div class="col-md-3">
+      <%= f.email_field :email, class: "form-control", value: @user.email %>
+    </div>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-md-12 text-center">
+      <%= f.submit '編集する', class: "btn btn-success mt-4" %>
     </div>
   </div>
   <% end %>
