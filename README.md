@@ -36,8 +36,10 @@
 ## 設計書
  - ER図
 <https://app.diagrams.net/#G1eITWjgluZuSKr97-Egw2sDtAFagp_NZX>
+
  - テーブル定義書
 <https://docs.google.com/spreadsheets/d/1ZqZDknVTmLQ50674xw5mxCy-1YuXpoTuVxLlAx2fYpE/edit#gid=1243549839>
+
  - アプリケーション定義書
 <https://docs.google.com/spreadsheets/d/1binJ0epy239SO1TfQM9XspJWUCr7kGIn/edit#gid=549108681>
 
