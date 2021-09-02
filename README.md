@@ -1,4 +1,4 @@
-#スケジュールマネージャー
+# スケジュールマネージャー
 
 複数人が参加するようなイベントの参加者の管理などが可能なサイトです。
 
@@ -20,7 +20,12 @@
 これまで自分自身が複数人でゲームをする機会が多かったことや、<br>
 その日程を管理する機会が多かったため、<br>
 そのためのスケジュール管理をもっとシンプルに、かつわかりやすく、<br>
-他のメンバーにもわかりやすく表示できれば良いと考えたため。
+他のメンバーにもわかりやすく表示できれば良いと考えたため。<br>
+<br>
+また、このご時世でリモートワークなどの増加により、<br>
+オンライン上でイベントごとの出欠を聞く機会が増えていることから、<br>
+1つのページに集約することで全員のスケジュールをログに残しつつ、<br>
+簡単に閲覧することができます。
 
 ### ターゲットユーザ
 複数人でゲームをプレイしたり、<br>
@@ -28,20 +33,17 @@
 また、それを管理する方。
 
 ### 主な利用シーン
-複数人が参加するイベントなどで、
-幹事の方が全員の日程を確認する際に使用。
+Zoom飲み会など、複数人が参加するイベントなどで、
+幹事の方が全員の日程を確認する時に使用。
 また、その登録されたスケジュールを参加者全員が確認し、
 日時を思い出せるようにできる。
 
 ## 設計書
- - ER図
-<https://drive.google.com/file/d/1eITWjgluZuSKr97-Egw2sDtAFagp_NZX/view?usp=sharing>
+ - [ER図](https://drive.google.com/file/d/1eITWjgluZuSKr97-Egw2sDtAFagp_NZX/view?usp=sharing)
 
- - テーブル定義書
-<https://docs.google.com/spreadsheets/d/1ZqZDknVTmLQ50674xw5mxCy-1YuXpoTuVxLlAx2fYpE/edit#gid=1243549839>
+ - [テーブル定義書](https://docs.google.com/spreadsheets/d/1ZqZDknVTmLQ50674xw5mxCy-1YuXpoTuVxLlAx2fYpE/edit#gid=1243549839)
 
- - アプリケーション定義書
-<https://docs.google.com/spreadsheets/d/1binJ0epy239SO1TfQM9XspJWUCr7kGIn/edit#gid=549108681>
+ - [アプリケーション定義書](https://docs.google.com/spreadsheets/d/1binJ0epy239SO1TfQM9XspJWUCr7kGIn/edit#gid=549108681)
 
 
 ## チャレンジ要素一覧
@@ -53,7 +55,3 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
