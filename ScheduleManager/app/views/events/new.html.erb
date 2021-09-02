@@ -9,12 +9,17 @@
 
     <div class="form-group row">
       <%= f.label "イベント名", class: "col-md-3 offset-md-2" %>
-      <%= f.text_field :event_name, class: "form-control col-md-5" %>
+      <%= f.text_field :event_name, class: "form-control col-md-5", placeholder: "Zoom飲み会、4/1に見に行く映画" %>
     </div>
 
     <div class="form-group row">
       <%= f.label "日付", class: "col-md-3 offset-md-2" %>
-      <%= f.datetime_field :name, class: "form-control col-md-5" %>
+      <%= f.datetime_field :event_at, class: "form-control col-md-5" %>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label "説明", class: "col-md-3 offset-md-2" %>
+      <%= f.text_area :description, class: "form-control col-md-5", placeholder: "チームの打ち上げでZoom飲み会をしましょう！経費で飲めます！" %>
     </div>
 
     <div class="form-group text-center btn-lg">

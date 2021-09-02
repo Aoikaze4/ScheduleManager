@@ -10,8 +10,25 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def destroy
+    event = Event.find(params[:id])
+    if event.destroy
+      redirect_to root_path
+    else
+      render root_path
+    end
+  end
+
+
   private
   def event_params
-
+    params.require(:event).permit(:event_name,:event_at,:description)
   end
 end

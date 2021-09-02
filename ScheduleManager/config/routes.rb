@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get 'mypage', to: 'users#mypage'
 
 
-  resources :events, only:[:new,:create,:show,:update,:destroy]
+  resources :events, only:[:new,:create,:show,:update,:destroy,:edit]
 end
