@@ -18,9 +18,17 @@
     </div>
 
     <div class="form-group row">
-      <%= f.label "説明", class: "col-md-3 offset-md-2" %>
+      <%= f.label "イベントの説明", class: "col-md-3 offset-md-2" %>
       <%= f.text_area :description, class: "form-control col-md-5", placeholder: "チームの打ち上げでZoom飲み会をしましょう！経費で飲めます！" %>
     </div>
+
+
+    <% unless user_signed_in? %>
+      <div class="form-group row">
+        <%= f.label "イベント主催者", class: "col-md-3 offset-md-2" %>
+        <%= f.text_field :user_name, class: "form-control col-md-5", placeholder: "名無し" %>
+      </div>
+    <% end %>
 
     <div class="form-group text-center btn-lg">
       <%= f.submit "イベントを作成する", class: "btn btn-success mx-3 my-2", style: "width: 240px; height: 50px" %>
