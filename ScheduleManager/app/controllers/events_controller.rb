@@ -4,9 +4,17 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = Event.new(event_params)
-    if event.save!
-      redirect_to event_path(event.id)
+    @event = Event.new(event_params)
+    binding.pry
+    if user_signed_in?
+      @event.user_id = current_user.id
+      @event.user_name = current_user.name
+    else
+      @event.user_name = params[:event][:user_name]
+    end
+
+    if @event.save!
+      redirect_to event_path(@event.id)
     end
   end
 
