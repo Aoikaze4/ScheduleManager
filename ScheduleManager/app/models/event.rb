@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  before_create :set_uuid
+
   has_many :user
   has_many :comment
 
@@ -11,4 +13,13 @@ class Event < ApplicationRecord
       errors.add(:event_at, "現在より過去の日時は指定できません。")
     end
   end
+
+
+  private
+  def set_uuid
+    while self.id.blank? || Event.find_by(id: self.id).present? do
+      self.id = SecureRandom.uuid
+    end
+  end
+
 end
