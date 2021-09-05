@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_124511) do
+ActiveRecord::Schema.define(version: 2021_09_05_133226) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -30,10 +30,11 @@ ActiveRecord::Schema.define(version: 2021_09_05_124511) do
 
   create_table "event_join_statuses", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "event_id"
+    t.string "event_id"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_name"
   end
 
   create_table "events", id: :string, force: :cascade do |t|

@@ -5,9 +5,13 @@
     </div>
   </div>
 
-  <%= @event.event_at %>
-  <%= @event.description %>
-  <%= @event.user_name %>
+  予定日時：<%= @event.event_at %>
+  説明：<%= @event.description %>
+  作成者：<%= @event.user_name %>
+
+  <% @users.each do |f| %>
+    参加者：<%= f.user_name %>
+  <% end %>
 
   <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success btn-sm" %>
 
