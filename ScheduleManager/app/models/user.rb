@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :event
   has_many :comment
   has_many :favorite
+  has_many :event_join_status
 
   attachment :image
 end

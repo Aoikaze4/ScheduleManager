@@ -18,4 +18,36 @@
   <p><%= @user.name %></p>
 
 
+
+  <% if user_signed_in? %>
+    <div class="row mt-3">
+      <h3 class="col-md-5 ml-3">
+        予定記入済みイベント
+      </h3>
+    </div>
+
+    <div class="row mt-3">
+      <table class="table table-hover table inverse col-md-12">
+        <thead>
+          <th class="table-active col-md-3">イベント名</th>
+          <th class="table-active col-md-3">予定日時</th>
+          <th class="table-active col-md-3">自分の参加予定</th>
+          <th class="table-active col-md-3"></th>
+        </thead>
+        <tbody>
+          <% @events.each do |f| %>
+          <tr>
+            <td><%= f.event.event_name %></td>
+            <td><%= f.event.event_at %></td>
+            <td><%= f.status %></td>
+            <!-- 誰でも編集できるようにする（多忙の人が入力できない場合に誰かが代理で入力できるように） -->
+            <td>イベント予定状況編集のフォーム</td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+
 </div>

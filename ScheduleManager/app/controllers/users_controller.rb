@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def mypage
     @user = User.find(current_user.id)
+    if user_signed_in?
+      @events = EventJoinStatus.where(user_id: current_user.id)
+    end
   end
 
   def edit

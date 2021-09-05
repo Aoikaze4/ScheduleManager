@@ -33,7 +33,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @users = EventJoinStatus.where(event_id: @event.id)
-    binding.pry
   end
 
   def edit
@@ -45,7 +44,7 @@ class EventsController < ApplicationController
     if event.update(event_params)
       redirect_to event_path(event.id), notice: '変更を保存しました。'
     else
-      render :egit
+      render :edit
     end
   end
 
