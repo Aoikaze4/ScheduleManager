@@ -4,8 +4,8 @@ class EventsController < ApplicationController
   end
 
   def create
+    #@を外してもいいかも（特に不要そうであれば）
     @event = Event.new(event_params)
-    binding.pry
     if user_signed_in?
       @event.user_id = current_user.id
       @event.user_name = current_user.name
