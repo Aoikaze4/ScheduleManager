@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 
 
   resources :events, only:[:new,:create,:show,:update,:destroy,:edit]
+  resources :comments, only:[:new,:create,:destroy]
 end

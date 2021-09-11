@@ -3,7 +3,9 @@ class Comment < ApplicationRecord
   belongs_to :event
 
   validates :comment, presence: true
-  validates :length, { in: 1..128 }
+  validates :comment, length: { in: 1..128 }
+  validates :user_name, presence: true
+  validates :user_name, length: { maximum: 20 }
 
   attachment :image
 end

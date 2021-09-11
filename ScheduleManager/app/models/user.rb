@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :event_image
-  has_many :event
-  has_many :comment
-  has_many :favorite
-  has_many :event_join_status
+  has_many :event_images
+  has_many :events
+  has_many :comments
+  has_many :favorites
+  has_many :event_join_statuses
 
   attachment :image
 end

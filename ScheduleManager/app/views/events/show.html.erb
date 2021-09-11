@@ -57,8 +57,26 @@
     </table>
 
     <div class="col-md-4">
+      <div>
+        <%= form_with model: @comment, url: comments_path, method: :post, local: true do |f| %>
+          <% unless user_signed_in? %>
+            <%= f.text_field :user_name, placeholder: "名前", class: "form-control" %>
+          <% else %>
+            <%= attachment_image_tag current_user, :image, size:"75x75", fallback: "no_image.jpg", class: "rounded-circle" %>
+            <%= current_user.name %>
+          <% end %>
+
+          <%= f.text_area :comment, placeholder: "コメントを入力", class: "form-control" %>
+          <%= f.submit "投稿する", class: "btn btn-primary btn-sm" %>
+        <% end %>
+      </div>
+
       <% @comments.each do |f| %>
-      
+        <%= attachment_image_tag f.user, :image, size:"75x75", fallback: "no_image.jpg", class: "rounded-circle" %>
+        <%= f.user.name %>
+        <%= f.comment %>
+        <%= f.created_at %>
+      <% end %>
     </div>
   </div>
 </div>

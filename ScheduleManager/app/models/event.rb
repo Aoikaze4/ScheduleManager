@@ -1,9 +1,9 @@
 class Event < ApplicationRecord
   before_create :set_uuid
 
-  has_many :user
-  has_many :comment
-  has_many :event_join_status
+  has_many :users
+  has_many :comments
+  has_many :event_join_statuses
 
   validates :event_name,:event_at, presence: true
   validates :event_name, length: {maximum: 20}
