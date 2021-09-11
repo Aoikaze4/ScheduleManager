@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users, only:[:edit,:update]
   get 'mypage', to: 'users#mypage'
 
+  #イベント参加時
+  post 'events/:id', to: 'event_join_statuses#join'
+
 
   resources :events, only:[:new,:create,:show,:update,:destroy,:edit]
 end

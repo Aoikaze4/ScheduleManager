@@ -9,9 +9,34 @@
   説明：<%= @event.description %>
   作成者：<%= @event.user_name %>
 
-  <% @users.each do |f| %>
-    参加者：<%= f.user_name %>
+  <!-- 既に参加しているユーザーIDは省く -->
+  <% if user_signed_in? && @event.user_id != current_user.id %>
+    <div class="row mt-3">
+      <%= link_to "ログインしているユーザー名で参加する", events_path, method: :post, class: "btn btn-primary" %>
+    </div>
   <% end %>
+
+  <div class="row mt-3">
+    <table class="table col-md-8">
+      <thead>
+        <th class="table-active col-md-3">
+          名前
+        </th>
+        <th class="table-active col-md-3">
+          参加予定
+        </th>
+      </thead>
+
+      <tbody>
+        <% @users.each do |f| %>
+        <tr>
+          <td><%= f.user_name %></td>
+          <td><%= f.status %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
   <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success btn-sm" %>
 
@@ -21,5 +46,6 @@
       <%= link_to "削除する", event_path(@event.id), method: :delete, class:"btn btn-danger btn-sm", data: {confirm: "このイベント【" + @event.event_name + "】を削除しますか？"} %>
     <% end %>
   <% end %>
+  </div>
 
 </div>

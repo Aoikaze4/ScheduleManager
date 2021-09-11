@@ -36,7 +36,7 @@
         </thead>
         <tbody>
           <% @events.each do |f| %>
-          <tr>
+          <tr data-href="<%= event_path(f.event_id) %>">
             <td><%= f.event.event_name %></td>
             <td><%= f.event.event_at %></td>
             <td><%= f.status %></td>
@@ -51,3 +51,14 @@
 
 
 </div>
+
+<!-- 行全体をリンク化 -->
+<script>
+  $(document).ready(function () {
+    $("tr[data-href]").click(function (e){
+      if (!$(this).is('a')) {
+        window.location = $(this).data('href');
+      };
+    });
+  });
+</script>
