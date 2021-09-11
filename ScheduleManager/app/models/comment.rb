@@ -4,4 +4,6 @@ class Comment < ApplicationRecord
 
   validates :comment, presence: true
   validates :length, { in: 1..128 }
+
+  attachment :image
 end
