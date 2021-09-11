@@ -7,7 +7,6 @@ class EventsController < ApplicationController
     #@を外してもいいかも（特に不要そうであれば）
     @event = Event.new(event_params)
     event_join_status = EventJoinStatus.create(
-      user_name: current_user.name,
       status: 0,
       )
 

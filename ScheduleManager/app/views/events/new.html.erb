@@ -6,7 +6,6 @@
   </div>
 
   <%= form_with model: @event, url: events_path, local: true do |f| %>
-
     <div class="form-group row">
       <%= f.label "イベント名", class: "col-md-3 offset-md-2" %>
       <%= f.text_field :event_name, class: "form-control col-md-5", placeholder: "Zoom飲み会、4/1に見に行く映画" %>
