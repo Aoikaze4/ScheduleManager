@@ -13,8 +13,12 @@
     <!-- @eventモデルのuser_idが空（非ログインユーザーで作成されたもの）だったら誰でも編集可能
          また、user_idが入っている場合ログインしてるユーザーと一致すれば、その人のみが編集可能 -->
     <div class="col-md-3">
-      <% if @event.user_id == nil || @event.user_id == current_user.id %>
-        <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success mr-3" %>
+      <% if @event.user_id == nil %>
+        <% if user_signed_in? %>
+          <% if @event.user_id == current_user.id %>
+            <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success mr-3" %>
+          <% end %>
+        <% end %>
       <% end %>
 
       <!-- ログインしているかつ、ログインしているユーザーとイベント作成者のURLが同じ場合のみ表示 -->
@@ -35,7 +39,7 @@
   <% end %>
 
   <div class="row mt-3">
-    <table class="table col-md-8">
+    <table class="table col-md-6">
       <thead>
         <th class="table-active col-md-3">
           名前
@@ -43,7 +47,6 @@
         <th class="table-active col-md-3">
           参加予定
         </th>
-        <th class="table-active col-md-2"></th>
       </thead>
 
       <tbody>
@@ -56,10 +59,11 @@
       </tbody>
     </table>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div>
-        <%= form_with model: @comment, url: comments_path, method: :post, local: true do |f| %>
+        <%= form_with model: [@event,@comment], local: true do |f| %>
           <% unless user_signed_in? %>
+            <%= image_tag "no_image.jpg",size:"75x75", class: "rounded-circle" %>
             <%= f.text_field :user_name, placeholder: "名前", class: "form-control" %>
           <% else %>
             <%= attachment_image_tag current_user, :image, size:"75x75", fallback: "no_image.jpg", class: "rounded-circle" %>
@@ -71,12 +75,40 @@
         <% end %>
       </div>
 
+      <div>
+
       <% @comments.each do |f| %>
-        <%= attachment_image_tag f.user, :image, size:"75x75", fallback: "no_image.jpg", class: "rounded-circle" %>
-        <%= f.user.name %>
-        <%= f.comment %>
-        <%= f.created_at %>
+        <div class="row mt-3 justify-content-between d-flex p-1 rounded-pill border">
+          <div class="col-md-2 mt-1">
+            <%= attachment_image_tag f.user, :image, size:"75x75", fallback: "no_image.jpg", class: "rounded-circle" %>
+          </div>
+
+          <div class="col-md-10">
+            <div class="row justify-content-between d-flex">
+              <p><%= f.user_name %></p>
+              <p class="text-right mr-4"><%= f.created_at %></p>
+            </div>
+
+            <div class="row d-flex align-items-center">
+              <div class="col-md-10 ml-2 p-1 says">
+                <p class="m-2"><%= f.comment %></p>
+              </div>
+
+              <% if user_signed_in? %>
+                <div class="col-md-2">
+                  <% if f.user_id == current_user.id %>
+                    <%= link_to "削除", event_comment_path(f.event_id,f.id), method: :delete,
+                      data: {confirm: "このコメントを削除しますか？"}, class: "btn btn-danger btn-sm" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       <% end %>
+
+      </div>
+
     </div>
   </div>
 </div>

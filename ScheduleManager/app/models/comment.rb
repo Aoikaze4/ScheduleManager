@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :event
+  has_many :event_images
 
   validates :comment, presence: true
   validates :comment, length: { in: 1..128 }

@@ -33,7 +33,8 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @users = EventJoinStatus.where(event_id: @event.id)
-    @comments = Comment.where(event_id: @event.id)
+    @comments = Comment.where(event_id: @event.id).reverse
+    @comment = Comment.new
   end
 
   def edit
