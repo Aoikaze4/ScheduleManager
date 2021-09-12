@@ -1,13 +1,13 @@
 class EventJoinStatusesController < ApplicationController
-  def join
-    @event = Event.find(params[:id])
+  def create
+    @event = Event.find(params[:event_id])
 
     event_join_status = EventJoinStatus.create(
       event_id: @event.id,
       status: 0,
     )
 
-    if user_signed_in? && params[:event_join_status][:user_name].blank?
+    if user_signed_in? && params[:user_name].blank?
       event_join_status.user_id = current_user.id
       event_join_status.user_name = current_user.name
     else

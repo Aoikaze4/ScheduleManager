@@ -37,7 +37,7 @@
   <!-- 既に参加しているユーザーIDは省く -->
 
   <div class="row m-3">
-    <%= form_with model: @event_join, url: {controller: 'event_join_statuses', action: 'join'}, local: true do |f| %>
+    <%= form_with model: [@event,@event_join], url: event_event_join_statuses_path(@event.id), local: true do |f| %>
       <%= f.label "名前を入れて予定を入力する" %>
       <div class="d-flex">
         <%= f.text_field :user_name, placeholder: "名前", class: "form-control ml-2" %>
@@ -48,11 +48,11 @@
 
   <% if user_signed_in? && @event.user_id != current_user.id %>
     <div class="row m-3">
-      <%= link_to "ログインしているユーザー名で参加する", events_path, method: :post, class: "btn btn-primary ml-2" %>
+      <%= link_to "ログインしているユーザー名で参加する", event_event_join_statuses_path(@event.id), method: :post, class: "btn btn-primary ml-2" %>
     </div>
   <% else %>
     <div class="row m-3">
-      <%= form_with model: @event_join, url: {controller: 'event_join_statuses', action: 'join'}, local: true do |f| %>
+      <%= form_with model: [@event,@event_join], url: {controller: 'event_join_statuses', action: 'create'}, local: true do |f| %>
         <%= f.text_field :user_name, placeholder: "名前", class: "form-control" %>
         <%= f.submit "予定を入力する", class: "btn btn-success" %>
       <% end %>
@@ -72,7 +72,14 @@
       <tbody>
         <% @users.each do |f| %>
         <tr>
-          <td><%= f.user_name %></td>
+          <td>
+            <!-- 非登録ユーザー（idが格納されていない）人のみ名前表示（DBの設計ミス） -->
+            <% if f.user_id.blank? %>
+              <%= f.user_name %>
+            <% else %>
+              <%= f.user.name %>
+            <% end %>
+          </td>
           <td class="form-inline">
             <%= form_with model: [@event,f], url: event_event_join_status_path(@event.id,f.id), method: :patch, local: true do |f| %>
               <%= f.select :status, EventJoinStatus.statuses.keys.to_a, {}, class: "form-control", style: "width:70%;" %>
@@ -117,21 +124,29 @@
           </div>
 
           <div class="col-md-10">
-            <div class="row justify-content-between d-flex">
-              <p class="col-md-5 ml-4 mt-2"><%= f.user_name %></p>
-              <p class="text-right mr-4 col-md-5"><%= f.created_at %></p>
+            <div class="justify-content-between d-flex">
+              <p class="ml-4 mt-2">
+                <% if f.user_id.blank? %>
+                  <%= f.user_name %>
+                <% else %>
+                  <%= f.user.name %>
+                <% end %>
+              </p>
+              <p class="text-right mr-4"><%= f.created_at %></p>
             </div>
 
             <div class="row d-flex align-items-center">
-              <div class="col-md-10 ml-4 p-1 says">
+              <div class="ml-4 p-1 says">
                 <p class="m-2"><%= f.comment %></p>
               </div>
 
               <% if user_signed_in? %>
                 <div class="col-md-2">
                   <% if f.user_id == current_user.id %>
-                    <%= link_to "削除", event_comment_path(f.event_id,f.id), method: :delete,
-                      data: {confirm: "このコメントを削除しますか？"}, class: "btn btn-danger btn-sm" %>
+                    <div class="text-right">
+                      <%= link_to "削除", event_comment_path(f.event_id,f.id), method: :delete,
+                        data: {confirm: "このコメントを削除しますか？"}, class: "btn btn-danger btn-sm my-2" %>
+                    </div>
                   <% end %>
                 </div>
               <% end %>

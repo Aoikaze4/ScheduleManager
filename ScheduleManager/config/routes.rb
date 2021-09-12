@@ -10,12 +10,11 @@ Rails.application.routes.draw do
   get 'mypage', to: 'users#mypage'
 
   #イベント参加時
-  post 'events/:id', to: 'event_join_statuses#join'
 
-
+  #resources :event_join_statuses, only:[:create]
 
   resources :events, only:[:new,:create,:show,:update,:destroy,:edit] do
     resources :comments, only:[:create,:destroy]
-    resources :event_join_statuses, only:[:update]
+    resources :event_join_statuses, only:[:update,:destroy,:create]
   end
 end
