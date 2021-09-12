@@ -4,15 +4,9 @@ class EventJoinStatusesController < ApplicationController
 
     event_join_status = EventJoinStatus.create(
       event_id: @event.id,
-      status: 0,
     )
 
-    if user_signed_in? && params[:user_name].blank?
-      event_join_status.user_id = current_user.id
-      event_join_status.user_name = current_user.name
-    else
-      event_join_status.user_name = params[:event_join_status][:user_name]
-    end
+    event_join_status.update(event_join_status_params)
 
     if event_join_status.save!
       redirect_to event_path(@event.id)
