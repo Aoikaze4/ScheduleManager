@@ -58,19 +58,25 @@
   <% end %>
 
   <div class="row mt-3">
-    <table class="table col-md-6">
-      <thead>
-        <th class="table-active">
+    <table class="table col-md-6" style="table-layout:fixed; height:160px;">
+      <thead class="thead-light">
+        <th style="width:50px;"></th>
+        <th style="width:150px;">
           名前
         </th>
-        <th class="table-active">
+        <th style="width:250px;">
           予定状況
       </thead>
 
       <tbody>
         <% @users.each do |f| %>
         <tr>
-          <td>
+          <td class="align-middle">
+            <% unless f.user_id.blank? %>
+              <%= attachment_image_tag f.user, :image, size:"50x50", fallback: "no_image.jpg", class: "rounded-circle" %>
+            <% end %>
+          </td>
+          <td class="align-middle" style="word-wrap:break-word;">
             <!-- 非登録ユーザー（idが格納されていない）人のみ名前表示（DBの設計ミス） -->
             <% if f.user_id.blank? %>
               <%= f.user_name %>
@@ -78,9 +84,9 @@
               <%= f.user.name %>
             <% end %>
           </td>
-          <td class="form-inline">
+          <td class="form-inline align-middle">
             <%= form_with model: [@event,f], url: event_event_join_status_path(@event.id,f.id), method: :patch, local: true do |f| %>
-              <%= f.select :status, EventJoinStatus.statuses.keys.to_a, {}, class: "form-control", style: "width:70%;" %>
+              <%= f.select :status, EventJoinStatus.statuses.keys.to_a, {}, class: "form-control" %>
               <%= f.submit "更新", class: "btn btn-success btn-sm ml-2" %>
             <% end %>
 
