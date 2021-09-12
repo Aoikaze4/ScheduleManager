@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   post 'events/:id', to: 'event_join_statuses#join'
 
 
+
   resources :events, only:[:new,:create,:show,:update,:destroy,:edit] do
     resources :comments, only:[:create,:destroy]
+    resources :event_join_statuses, only:[:update]
   end
 end

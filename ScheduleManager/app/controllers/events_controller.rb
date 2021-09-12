@@ -35,6 +35,7 @@ class EventsController < ApplicationController
     @users = EventJoinStatus.where(event_id: @event.id)
     @comments = Comment.where(event_id: @event.id).reverse
     @comment = Comment.new
+    @event_join = EventJoinStatus.new
   end
 
   def edit
