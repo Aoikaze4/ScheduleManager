@@ -7,7 +7,7 @@ class EventJoinStatusesController < ApplicationController
       status: 0,
     )
 
-    if user_signed_in?
+    if user_signed_in? && params[:event_join_status][:user_name].blank?
       event_join_status.user_id = current_user.id
       event_join_status.user_name = current_user.name
     else

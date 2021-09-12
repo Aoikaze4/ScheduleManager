@@ -66,19 +66,20 @@
           名前
         </th>
         <th class="table-active">
-          参加予定
-        </th>
+          予定状況
       </thead>
 
       <tbody>
         <% @users.each do |f| %>
         <tr>
           <td><%= f.user_name %></td>
-          <td>
+          <td class="form-inline">
             <%= form_with model: [@event,f], url: event_event_join_status_path(@event.id,f.id), method: :patch, local: true do |f| %>
-              <%= f.select :status, EventJoinStatus.statuses.keys.to_a, {}, class: "form-control", style: "width:30%;" %>
-              <%= f.submit "更新", class: "btn btn-success btn-sm" %>
+              <%= f.select :status, EventJoinStatus.statuses.keys.to_a, {}, class: "form-control", style: "width:70%;" %>
+              <%= f.submit "更新", class: "btn btn-success btn-sm ml-2" %>
             <% end %>
+
+            <%= link_to "削除", root_path, class: "btn btn-danger btn-sm ml-2" %>
           </td>
         </tr>
         <% end %>
