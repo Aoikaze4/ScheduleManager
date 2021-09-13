@@ -23,9 +23,11 @@ class EventsController < ApplicationController
     end
 
 
-    if @event.save!
+    if @event.save
       event_join_status.update(event_id: @event.id)
-      redirect_to event_path(@event.id)
+      redirect_to event_path(@event.id), notice: "イベントを作成しました！URLを共有して予定を入力してもらいましょう！"
+    else
+      render :new
     end
   end
 

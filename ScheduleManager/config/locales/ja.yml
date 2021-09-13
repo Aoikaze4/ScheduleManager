@@ -5,3 +5,19 @@ ja:
       short: "%m/%d %H:%M"
       schedule: "%Y/%m/%d %H:%M"
       comment: "%m/%d %H:%M:%S"
+  activerecord:
+    models:
+      event: イベント
+      user: ユーザー
+      comment: コメント
+    attributes:
+      event:
+        event_name: イベント名
+        user_name: ユーザー名
+        event_at: 予定日時
+        description: 説明
+      user:
+        name: 名前
+        email: メールアドレス
+      comment:
+        comment: コメント

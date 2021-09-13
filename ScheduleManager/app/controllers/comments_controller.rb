@@ -12,9 +12,7 @@ class CommentsController < ApplicationController
     end
 
     if comment.save
-      redirect_to event_path(event.id)
-    else
-      render 'events/'
+      redirect_to event_path(event.id), notice: "コメントを投稿しました。"
     end
   end
 
