@@ -1,28 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5 my-5">
+    <div class="col-md-6 my-5">
       <h1>マイページ</h1>
+    </div>
+    <div class="col-md-6 d-flex flex-column justify-content-end align-items-end">
+      <%= attachment_image_tag @user, :image, size:"100x100", fallback: "no_image.jpg", class: "rounded-circle mx-3 mt-4" %>
+
+      <%= link_to "編集", edit_user_path(current_user.id), class: "btn btn-success col-md-3 m-2" %>
     </div>
   </div>
 
-  <div class="row">
-    <h2 class="col-md-5 ml-3">
-      ユーザー情報
-      <%= link_to "編集する", edit_user_path(current_user.id), class: "btn btn-success col-md-3 ml-4" %>
-    </h2>
-  </div>
 
 
-  <%= attachment_image_tag @user, :image, size:"100x100", fallback: "no_image.jpg", class: "rounded-circle" %>
 
-  <p><%= @user.name %></p>
+
+
+
+
 
 
 
   <% if user_signed_in? %>
     <div class="row mt-3">
-      <h3 class="col-md-5 ml-3">
-        予定記入済みイベント
+      <h3 class="col-md-12 ml-3">
+        <%= @user.name %>さん の予定入力済みイベント
       </h3>
     </div>
 
@@ -36,7 +37,7 @@
         </thead>
         <tbody>
           <% @events.each do |f| %>
-          <tr data-href="<%= event_path(f.event_id) %>">
+          <tr data-href="<%= event_path(f.event_id) %>", style="cursor: hand; cursor:pointer;">
             <td><%= f.event.event_name %></td>
             <td><%= f.event.event_at %></td>
             <td><%= f.status %></td>

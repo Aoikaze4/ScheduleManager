@@ -4,33 +4,30 @@
       <h1><%= @event.event_name %></h1>
     </div>
     <div class="col-md-7 d-flex flex-column justify-content-end align-items-end">
+      <div class="d-flex-inline">
+        <!-- @eventモデルのuser_idが空（非ログインユーザーで作成されたもの）だったら誰でも編集可能
+         また、user_idが入っている場合ログインしてるユーザーと一致すれば、その人のみが編集可能 -->
+        <% if @event.user_id != nil %>
+          <% if user_signed_in? %>
+            <% if @event.user_id == current_user.id %>
+              <%= link_to "イベントを編集する", edit_event_path(@event.id), class: "btn btn-success m-2" %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to "イベントを編集する", edit_event_path(@event.id), class: "btn btn-success m-2" %>
+        <% end %>
+
+        <!-- ログインしているかつ、ログインしているユーザーとイベント作成者のURLが同じ場合のみ表示 -->
+        <% if user_signed_in? %>
+          <% if @event.user_id == current_user.id %>
+            <%= link_to "イベントを削除する", event_path(@event.id), method: :delete, class:"btn btn-danger my-2 ml-2",
+            data: {confirm: "このイベント【" + @event.event_name + "】を削除しますか？"} %>
+          <% end %>
+        <% end %>
+      </div>
       <div class="bd-highlight">予定日時：<%= @event.event_at %></div>
       <div class="bd-highlight">オーナー：<%= @event.user_name %></div>
       <div class="bd-highlight">簡単な説明：<%= @event.description %></div>
-    </div>
-  </div>
-
-  <div class="row">
-    <!-- @eventモデルのuser_idが空（非ログインユーザーで作成されたもの）だったら誰でも編集可能
-         また、user_idが入っている場合ログインしてるユーザーと一致すれば、その人のみが編集可能 -->
-    <div class="col-md-3">
-      <% if @event.user_id != nil %>
-        <% if user_signed_in? %>
-          <% if @event.user_id == current_user.id %>
-            <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success mr-3" %>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success mr-3" %>
-      <% end %>
-
-      <!-- ログインしているかつ、ログインしているユーザーとイベント作成者のURLが同じ場合のみ表示 -->
-      <% if user_signed_in? %>
-        <% if @event.user_id == current_user.id %>
-          <%= link_to "イベントを削除する", event_path(@event.id), method: :delete, class:"btn btn-danger",
-          data: {confirm: "このイベント【" + @event.event_name + "】を削除しますか？"} %>
-        <% end %>
-      <% end %>
     </div>
   </div>
 
