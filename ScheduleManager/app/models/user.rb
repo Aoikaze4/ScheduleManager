@@ -6,9 +6,8 @@ class User < ApplicationRecord
 
   has_many :event_images
   has_many :events
-  has_many :comments
-  has_many :favorites
-  has_many :event_join_statuses
+  has_many :comments, dependent: :destroy
+  has_many :event_join_statuses, dependent: :destroy
 
   attachment :image
 end

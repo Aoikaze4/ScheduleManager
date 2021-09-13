@@ -2,8 +2,8 @@ class Event < ApplicationRecord
   before_create :set_uuid
 
   has_many :users
-  has_many :comments
-  has_many :event_join_statuses
+  has_many :comments, dependent: :destroy
+  has_many :event_join_statuses, dependent: :destroy
 
   validates :event_name,:event_at, presence: true
   validates :event_name, length: {maximum: 20}
