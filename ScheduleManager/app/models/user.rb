@@ -9,5 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :event_join_statuses, dependent: :destroy
 
+  validates :name, presence: true
+
   attachment :image
 end

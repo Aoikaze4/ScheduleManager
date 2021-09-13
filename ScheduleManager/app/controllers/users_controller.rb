@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def mypage
     @user = User.find(current_user.id)
     if user_signed_in?
@@ -11,8 +13,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(current_user.id)
-    if user.update(user_params)
+    @user = User.find(current_user.id)
+    if @user.update(user_params)
       redirect_to mypage_path, notice: "編集が完了しました。"
     else
       render :edit
