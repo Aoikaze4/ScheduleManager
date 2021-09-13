@@ -19,3 +19,10 @@
 //= require turbolinks
 //= require_tree .
 
+$(function() {
+    $('.slideBox').slick({
+        centerMode: true,
+        centerPadding: '50px',
+        dots: true,
+    });
+});

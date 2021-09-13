@@ -25,6 +25,19 @@
   object-fit: cover;
 }
 
+ .slideImg{
+  height: 300px;
+  width: 100%;
+ }
+
+.slick-next:before {
+    color: black;
+}
+
+.slick-prev:before {
+    color: black;
+}
+
  .says {
   display: inline-block;
   position: relative;
