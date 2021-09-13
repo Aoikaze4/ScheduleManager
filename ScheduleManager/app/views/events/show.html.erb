@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-5 my-5">
+    <div class="col-lg-5 my-5">
       <h1><%= @event.event_name %></h1>
     </div>
-    <div class="col-md-7 d-flex flex-column justify-content-end align-items-end">
+    <div class="col-lg-7 d-flex flex-column justify-content-end align-items-end">
       <div class="d-flex-inline">
         <!-- @eventモデルのuser_idが空（非ログインユーザーで作成されたもの）だったら誰でも編集可能
          また、user_idが入っている場合ログインしてるユーザーと一致すれば、その人のみが編集可能 -->
@@ -31,7 +31,12 @@
     </div>
   </div>
 
-  <!-- 既に参加しているユーザーIDは省く -->
+  <div class="row">
+    <div class="col-lg-12">
+      <b><p>参加する：<%= @users.where(status: 0).count %>人　　保留：<%= @users.where(status: 1).count %>人　　参加しない：<%= @users.where(status: 2).count %>人</p></b>
+    </div>
+  </div>
+
 
   <div class="row m-3">
     <%= form_with model: [@event,@event_join], url: event_event_join_statuses_path(@event.id), local: true do |f| %>
@@ -45,6 +50,7 @@
     <% end %>
   </div>
 
+  <!-- 既に参加しているユーザーIDは省く -->
   <% if user_signed_in? && @event.event_join_statuses.where(user_id: current_user.id).blank? %>
     <div class="row m-3">
       <%= form_with model: [@event,@event_join], url: event_event_join_statuses_path(@event.id), local: true do |f| %>
@@ -57,14 +63,15 @@
   <% end %>
 
   <div class="row mt-3">
-    <table class="table col-md-6" style="table-layout:fixed; height:160px;">
+    <table class="table col-lg-6" style="table-layout:fixed; height:160px;">
       <thead class="thead-light">
-        <th style="width:50px;"></th>
-        <th style="width:150px; height:auto;">
+        <th style="width:65px;"></th>
+        <th style="width:100px;">
           名前
         </th>
-        <th style="width:250px;">
+        <th style="width:auto;">
           予定状況
+        <th style="width:100px;"></th>
       </thead>
 
       <tbody>
@@ -75,7 +82,7 @@
               <%= attachment_image_tag f.user, :image, size:"50x50", fallback: "no_image.jpg", class: "rounded-circle" %>
             <% end %>
           </td>
-          <td class="align-middle" style="word-wrap:break-word;">
+          <td class="align-middle" style="word-wrap:break-word; width:200px;">
             <!-- 非登録ユーザー（idが格納されていない）人のみ名前表示（DBの設計ミス） -->
             <% if f.user_id.blank? %>
               <%= f.user_name %>
@@ -84,19 +91,22 @@
             <% end %>
           </td>
           <td class="form-inline">
+            <div class="d-flex align-items-center">
             <%= form_with model: [@event,f], url: event_event_join_status_path(@event.id,f.id), method: :patch, local: true do |f| %>
               <%= f.select :status, EventJoinStatus.statuses.keys.to_a, {}, class: "form-control" %>
-              <%= f.submit "更新", class: "btn btn-success btn-sm ml-2" %>
+              <%= f.submit "更新", class: "btn btn-success btn-sm ml-3" %>
             <% end %>
-
-            <%= link_to "削除", event_event_join_status_path(@event, f.id), method: :delete, class: "btn btn-danger btn-sm ml-2" %>
+            </div>
+          </td>
+          <td class="align-middle">
+             <%= link_to "削除", event_event_join_status_path(@event, f.id), method: :delete, data: {confirm: "この予定を削除しますか？"}, class: "btn btn-danger btn-sm ml-2" %>
           </td>
         </tr>
         <% end %>
       </tbody>
     </table>
 
-    <div class="col-md-6">
+    <div class="col-lg-6">
       <div>
         <%= form_with model: [@event,@comment], local: true do |f| %>
           <% unless user_signed_in? %>
@@ -122,11 +132,11 @@
 
       <% @comments.each do |f| %>
         <div class="row mt-3 justify-content-between d-flex p-1 rounded border">
-          <div class="col-md-2 mt-3">
+          <div class="col-lg-2 mt-3">
             <%= attachment_image_tag f.user, :image, size:"75x75", fallback: "no_image.jpg", class: "rounded-circle" %>
           </div>
 
-          <div class="col-md-10">
+          <div class="col-lg-10">
             <div class="justify-content-between d-flex">
               <p class="ml-4 mt-2">
                 <% if f.user_id.blank? %>
@@ -144,7 +154,7 @@
               </div>
 
               <% if user_signed_in? %>
-                <div class="col-md-2">
+                <div class="col-lg-2">
                   <% if f.user_id == current_user.id %>
                     <div class="text-right">
                       <%= link_to "削除", event_comment_path(f.event_id,f.id), method: :delete,

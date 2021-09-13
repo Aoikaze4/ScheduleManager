@@ -30,10 +30,9 @@
     <div class="row mt-3">
       <table class="table table-hover table inverse col-md-12">
         <thead>
-          <th class="table-active col-md-3">イベント名</th>
-          <th class="table-active col-md-3">予定日時</th>
-          <th class="table-active col-md-3">自分の参加予定</th>
-          <th class="table-active col-md-3"></th>
+          <th class="table-active col-md-3" style="width:auto;">イベント名</th>
+          <th class="table-active col-md-3" style="width:auto;">予定日時</th>
+          <th class="table-active col-md-3" style="width:auto;">自分の参加予定</th>
         </thead>
         <tbody>
           <% @events.each do |f| %>
@@ -41,8 +40,7 @@
             <td><%= f.event.event_name %></td>
             <td><%= f.event.event_at %></td>
             <td><%= f.status %></td>
-            <!-- 誰でも編集できるようにする（多忙の人が入力できない場合に誰かが代理で入力できるように） -->
-            <td>イベント予定状況編集のフォーム</td>
+
           </tr>
           <% end %>
         </tbody>
