@@ -27,7 +27,6 @@
 
  .slider{
   margin: 100px auto;
-  width: 80%;
   opacity: 0;
   transition: 3s;
  }
@@ -37,8 +36,8 @@
 }
 
  .slideImg{
-  height: 300px;
-  width: 100%;
+  height: 100%;
+  width: auto;
  }
 
  .slick-next:before {

@@ -19,15 +19,20 @@
 //= require turbolinks
 //= require_tree .
 
-$(function() {
+ $("document").ready(function() {
     $('.slideBox').slick({
+        autoplay: true,
+        autoplaySpeed: 1500,
+        speed: 800,
         centerMode: true,
-        centerPadding: '30px',
+        centerPadding: '25%',
         dots: true,
+        variableWidth: true,
+        adaptiveHeight: true
     });
 });
 
-$(function () {
+ $("document").ready(function () {
     $('.slideBoxOnOff').click(function () {
         $('.slideBox').toggle();
     });
