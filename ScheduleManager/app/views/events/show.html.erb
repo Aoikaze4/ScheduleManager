@@ -50,16 +50,17 @@
     <% end %>
   </div>
 
-  <div class="slideBoxOnOff">
-    <div class="slideBox">
-      <% @comments.each do |f| %>
-        <% if f.image_id.present? %>
-          <div class="imgOnOff">
-            <%= attachment_image_tag f, :image, size:"100%x100%", class: "slideImg" %>
-          </div>
-        <% end %>
+  <div class="slideBoxOnOff text-right mb-3">
+    <button class="btn btn-outline-info align-items-right">投稿された画像を表示/非表示させる</button>
+  </div>
+  <div class="slideBox">
+    <% @comments.each do |f| %>
+      <% if f.image_id.present? %>
+        <div class="imgOnOff">
+          <%= attachment_image_tag f, :image, size:"100%x100%", class: "slideImg" %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
 
   <!-- 既に参加しているユーザーIDは省く -->

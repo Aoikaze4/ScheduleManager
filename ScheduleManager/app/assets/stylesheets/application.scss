@@ -25,16 +25,27 @@
   object-fit: cover;
 }
 
+ .slider{
+  margin: 100px auto;
+  width: 80%;
+  opacity: 0;
+  transition: 3s;
+ }
+
+ .slick-initialized{
+  opacity: 1;
+}
+
  .slideImg{
   height: 300px;
   width: 100%;
  }
 
-.slick-next:before {
+ .slick-next:before {
     color: black;
 }
 
-.slick-prev:before {
+ .slick-prev:before {
     color: black;
 }
 

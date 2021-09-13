@@ -22,7 +22,13 @@
 $(function() {
     $('.slideBox').slick({
         centerMode: true,
-        centerPadding: '50px',
+        centerPadding: '30px',
         dots: true,
+    });
+});
+
+$(function () {
+    $('.slideBoxOnOff').click(function () {
+        $('.slideBox').toggle();
     });
 });
