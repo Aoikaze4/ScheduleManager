@@ -21,9 +21,6 @@
 
  $("document").ready(function() {
     $('.slideBox').slick({
-        autoplay: true,
-        autoplaySpeed: 1500,
-        speed: 800,
         centerMode: true,
         centerPadding: '25%',
         dots: true,
