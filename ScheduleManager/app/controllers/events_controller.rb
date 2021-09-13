@@ -45,9 +45,9 @@ class EventsController < ApplicationController
   end
 
   def update
-    event = Event.find(params[:id])
-    if event.update(event_params)
-      redirect_to event_path(event.id), notice: '変更を保存しました。'
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to event_path(@event.id), notice: '変更を保存しました。'
     else
       render :edit
     end
@@ -56,7 +56,7 @@ class EventsController < ApplicationController
   def destroy
     event = Event.find(params[:id])
     if event.destroy
-      redirect_to root_path
+      redirect_to mypage_path, notice: "イベントを削除しました。"
     else
       render root_path
     end

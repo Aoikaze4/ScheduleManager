@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :event_join_statuses, dependent: :destroy
 
   validates :name, presence: true
+  validates :name, length: {maximum: 10}
 
   attachment :image
 end

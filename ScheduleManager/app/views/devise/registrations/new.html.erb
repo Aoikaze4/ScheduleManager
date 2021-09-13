@@ -7,7 +7,7 @@
 
   <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
     <div class="form-group row">
-      <%= f.label "ニックネーム", class: "col-md-3 offset-md-2" %>
+      <%= f.label "ユーザー名", class: "col-md-3 offset-md-2" %>
       <%= f.text_field :name, autofocus: true, placeholder: "山田一郎", class: "form-control col-md-5" %>
     </div>
 

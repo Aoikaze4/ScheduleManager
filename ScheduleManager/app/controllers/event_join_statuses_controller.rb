@@ -2,28 +2,30 @@ class EventJoinStatusesController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
 
-    event_join_status = EventJoinStatus.create(
+    @event_join_status = EventJoinStatus.create(
       event_id: @event.id,
     )
 
-    event_join_status.update(event_join_status_params)
+    @event_join_status.update(event_join_status_params)
 
-    if event_join_status.save!
-      redirect_to event_path(@event.id)
+    if @event_join_status.save
+      redirect_to event_path(@event.id), notice: "ユーザーの予定を追加しました。"
+    else
+      render 'events/show'
     end
   end
 
   def update
     event_join_status = EventJoinStatus.find(params[:id])
     if event_join_status.update(event_join_status_params)
-      redirect_to event_path(event_join_status.event_id)
+      redirect_to event_path(event_join_status.event_id), notice: "予定を変更しました。"
     end
   end
 
   def destroy
     event_join_status = EventJoinStatus.find(params[:id])
     if event_join_status.destroy
-      redirect_to event_path(event_join_status.event_id)
+      redirect_to event_path(event_join_status.event_id), notice: "予定を削除しました。"
     end
   end
 

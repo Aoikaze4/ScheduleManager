@@ -6,4 +6,5 @@ class EventJoinStatus < ApplicationRecord
 
   validates :status, presence: true
   validates :user_name, presence: true
+  validates :user_name, length: {maximum: 10}
 end
