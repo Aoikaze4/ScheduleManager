@@ -38,7 +38,7 @@
           <% @events.each do |f| %>
           <tr data-href="<%= event_path(f.event_id) %>", style="cursor: hand; cursor:pointer;">
             <td><%= f.event.event_name %></td>
-            <td><%= f.event.event_at %></td>
+            <td><%= l f.event.event_at, format: :schedule %></td>
             <td><%= f.status %></td>
 
           </tr>

@@ -25,7 +25,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="bd-highlight">予定日時：<%= @event.event_at %></div>
+      <div class="bd-highlight">予定日時：<%= l @event.event_at, format: :schedule %></div>
       <div class="bd-highlight">オーナー：<%= @event.user_name %></div>
       <div class="bd-highlight">簡単な説明：<%= @event.description %></div>
     </div>
