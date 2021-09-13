@@ -50,19 +50,6 @@
     <% end %>
   </div>
 
-  <div class="slideBoxOnOff text-right mb-3">
-    <button class="btn btn-outline-info align-items-right">投稿された画像を表示/非表示させる</button>
-  </div>
-  <div class="slideBox">
-    <% @comments.each do |f| %>
-      <% if f.image_id.present? %>
-        <div class="imgOnOff">
-          <%= attachment_image_tag f, :image, size:"100%x100%", class: "slideImg" %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
   <!-- 既に参加しているユーザーIDは省く -->
   <% if user_signed_in? && @event.event_join_statuses.where(user_id: current_user.id).blank? %>
     <div class="row m-3">
@@ -74,6 +61,19 @@
       <% end %>
     </div>
   <% end %>
+
+  <div class="text-right mb-3">
+    <button class="slideBoxOnOff btn btn-outline-info align-items-right">投稿された画像を表示/非表示させる</button>
+  </div>
+  <div class="slideBox">
+    <% @comments.each do |f| %>
+      <% if f.image_id.present? %>
+        <div class="imgOnOff">
+          <%= attachment_image_tag f, :image, size:"100%x100%", class: "slideImg" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 
   <div class="row mt-3">
     <table class="table col-lg-6" style="table-layout:fixed; height:170px;">

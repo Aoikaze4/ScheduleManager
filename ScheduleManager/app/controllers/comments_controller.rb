@@ -11,8 +11,10 @@ class CommentsController < ApplicationController
       comment.event_id = event.id
     end
 
-    if comment.save!
+    if comment.save
       redirect_to event_path(event.id)
+    else
+      render 'events/'
     end
   end
 
