@@ -14,12 +14,14 @@
     <!-- @eventモデルのuser_idが空（非ログインユーザーで作成されたもの）だったら誰でも編集可能
          また、user_idが入っている場合ログインしてるユーザーと一致すれば、その人のみが編集可能 -->
     <div class="col-md-3">
-      <% if @event.user_id == nil %>
+      <% if @event.user_id != nil %>
         <% if user_signed_in? %>
           <% if @event.user_id == current_user.id %>
             <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success mr-3" %>
           <% end %>
         <% end %>
+      <% else %>
+        <%= link_to "編集する", edit_event_path(@event.id), class: "btn btn-success mr-3" %>
       <% end %>
 
       <!-- ログインしているかつ、ログインしているユーザーとイベント作成者のURLが同じ場合のみ表示 -->
@@ -61,7 +63,7 @@
     <table class="table col-md-6" style="table-layout:fixed; height:160px;">
       <thead class="thead-light">
         <th style="width:50px;"></th>
-        <th style="width:150px;">
+        <th style="width:150px; height:auto;">
           名前
         </th>
         <th style="width:250px;">
@@ -84,13 +86,13 @@
               <%= f.user.name %>
             <% end %>
           </td>
-          <td class="form-inline align-middle">
+          <td class="form-inline">
             <%= form_with model: [@event,f], url: event_event_join_status_path(@event.id,f.id), method: :patch, local: true do |f| %>
               <%= f.select :status, EventJoinStatus.statuses.keys.to_a, {}, class: "form-control" %>
               <%= f.submit "更新", class: "btn btn-success btn-sm ml-2" %>
             <% end %>
 
-            <%= link_to "削除", root_path, class: "btn btn-danger btn-sm ml-2" %>
+            <%= link_to "削除", event_event_join_status_path(@event, f.id), method: :delete, class: "btn btn-danger btn-sm ml-2" %>
           </td>
         </tr>
         <% end %>
