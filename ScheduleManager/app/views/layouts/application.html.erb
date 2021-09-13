@@ -21,11 +21,16 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
-              <!-- ログイン済みの場合 -->
-              <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to "イベントを開催する", new_event_path, class: "fas fa-calendar-plus nav-link text-dark" %>
               </li>
+
+              <li class="nav-item">
+                <%= link_to "概要", about_path, class: "fas fa-question-circle nav-link text-dark" %>
+              </li>
+              <!-- ログイン済みの場合 -->
+              <% if user_signed_in? %>
+
               <li class="nav-item">
                 <%= link_to "マイページ", mypage_path, class: "fas fa-user nav-link text-dark" %>
               </li>
@@ -35,9 +40,6 @@
 
               <!-- ログインしていない場合 -->
               <% elsif %>
-              <li class="nav-item">
-                <%= link_to "イベントを開催する", new_event_path, class: "fas fa-calendar-plus nav-link text-dark" %>
-              </li>
               <li class="nav-item">
                 <%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt nav-link text-dark" %>
               </li>
@@ -58,7 +60,7 @@
       <div class="container-fluid mt-3 bg-dark text-white">
         <div class="row">
           <div class="mx-auto my-5">
-            <p class="text-center mb-0">フッター</p>
+            <p class="text-center mb-0"></p>
           </div>
         </div>
       </div>
