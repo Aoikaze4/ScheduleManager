@@ -21,6 +21,10 @@
   box-sizing: border-box;
  }
 
+ img{
+  object-fit: cover;
+}
+
  .says {
   display: inline-block;
   position: relative;

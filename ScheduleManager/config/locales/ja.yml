@@ -4,3 +4,4 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%m/%d %H:%M"
       schedule: "%Y/%m/%d %H:%M"
+      comment: "%m/%d %H:%M:%S"
