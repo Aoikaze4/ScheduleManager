@@ -21,3 +21,6 @@ ja:
         email: メールアドレス
       comment:
         comment: コメント
+        user_name: 名前
+      event_join_status:
+        user_name: 名前

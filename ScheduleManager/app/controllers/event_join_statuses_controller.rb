@@ -11,6 +11,10 @@ class EventJoinStatusesController < ApplicationController
     if @event_join_status.save
       redirect_to event_path(@event.id), notice: "ユーザーの予定を追加しました。"
     else
+
+      @users = EventJoinStatus.where(event_id: @event.id)
+      @comments = Comment.where(event_id: @event.id).reverse
+      @comment = Comment.new
       render 'events/show'
     end
   end

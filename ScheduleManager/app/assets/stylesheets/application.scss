@@ -25,20 +25,24 @@
   object-fit: cover;
 }
 
- .slider{
-  margin: 100px auto;
+ .slick-slider{
+  display: none;
   opacity: 0;
   transition: 3s;
+  width: auto;
+  height: auto;
  }
 
  .slick-initialized{
   opacity: 1;
 }
 
- .slideImg{
-  height: 100%;
-  width: auto;
- }
+
+//画像の縦横比弄りたいときはここ
+// .slick-slide img{
+//  width: 50%;
+//  height: auto;
+// }
 
  .slick-next:before {
     color: black;

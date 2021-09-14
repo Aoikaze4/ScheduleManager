@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     else
       @users = EventJoinStatus.where(event_id: @event.id)
       @comments = Comment.where(event_id: @event.id).reverse
-      @event_join = EventJoinStatus.new
+      @event_join_status = EventJoinStatus.new
       render 'events/show'
     end
   end

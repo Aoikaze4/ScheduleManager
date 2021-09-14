@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    event_join_status = EventJoinStatus.create(
+    @event_join_status = EventJoinStatus.create(
       status: 0,
       )
 
@@ -14,18 +14,21 @@ class EventsController < ApplicationController
       @event.user_id = current_user.id
       @event.user_name = current_user.name
 
-      event_join_status.user_name = current_user.name
-      event_join_status.user_id = current_user.id
+      @event_join_status.user_name = current_user.name
+      @event_join_status.user_id = current_user.id
     else
       #ログインしていなければ入力されたuser_nameの情報を入れる、user_idは不要
       @event.user_name  = params[:event][:user_name]
-      event_join_status.user_name = @event.user_name
+      @event_join_status.user_name = @event.user_name
     end
 
 
     if @event.save
-      event_join_status.update(event_id: @event.id)
-      redirect_to event_path(@event.id), notice: "イベントを作成しました！URLを共有して予定を入力してもらいましょう！"
+      if @event_join_status.update(event_id: @event.id)
+        redirect_to event_path(@event.id), notice: "イベントを作成しました！URLを共有して予定を入力してもらいましょう！"
+      else
+        render :new
+      end
     else
       render :new
     end
@@ -37,7 +40,7 @@ class EventsController < ApplicationController
     @users = EventJoinStatus.where(event_id: @event.id)
     @comments = Comment.where(event_id: @event.id).reverse
     @comment = Comment.new
-    @event_join = EventJoinStatus.new
+    @event_join_status = EventJoinStatus.new
   end
 
   def edit
