@@ -26,10 +26,8 @@
 }
 
  .slick-slider{
-  display: none;
   opacity: 0;
-  transition: 3s;
-  width: auto;
+  width: 100%;
   height: auto;
  }
 
@@ -86,4 +84,8 @@
 .alert{
   color: red;
   margin-left: 80px;
+}
+
+.field_with_errors {
+  display: contents;
 }
