@@ -41,14 +41,3 @@
 
 
 </div>
-
-<!-- 行全体をリンク化 -->
-<script>
-  $(document).ready(function () {
-    $("tr[data-href]").click(function (e){
-      if (!$(this).is('a')) {
-        window.location = $(this).data('href');
-      };
-    });
-  });
-</script>

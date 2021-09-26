@@ -19,7 +19,7 @@
 //= require turbolinks
 //= require_tree .
 
- $("document").ready(function() {
+$("document").ready(function() {
     $('.slideBox').slick({
         centerMode: true,
         centerPadding: '25%',
@@ -28,8 +28,17 @@
     });
 });
 
- $("document").ready(function () {
+$("document").ready(function () {
     $('.slideBoxOnOff').click(function () {
         $('.slideBox').toggle();
+    });
+});
+
+//行全体をリンク化
+$(document).ready(function () {
+    $("tr[data-href]").click(function (e){
+         if (!$(this).is('a')) {
+               window.location = $(this).data('href');
+         };
     });
 });
