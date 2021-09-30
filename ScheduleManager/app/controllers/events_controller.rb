@@ -1,4 +1,9 @@
 class EventsController < ApplicationController
+  def index
+    #一度すべてを取得。オープンなイベントか否かを選択し、そのステータスカラムで条件を指定するように後程変更
+    @events = Event.all
+  end
+
   def new
     @event = Event.new
   end

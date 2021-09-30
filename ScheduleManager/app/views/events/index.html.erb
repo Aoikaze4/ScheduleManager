@@ -1,1 +1,4 @@
-event.index.html
+<% @events.each do |f| %>
+  <%= f.event_name %>
+  <%= f.event_at %>
+<% end %>

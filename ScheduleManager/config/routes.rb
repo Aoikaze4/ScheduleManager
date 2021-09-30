@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   #resources :event_join_statuses, only:[:create]
 
-  resources :events, only:[:new,:create,:show,:update,:destroy,:edit] do
+  resources :events, only:[:new,:create,:show,:update,:destroy,:edit,:index] do
     resources :comments, only:[:create,:destroy]
     resources :event_join_statuses, only:[:update,:destroy,:create]
   end
